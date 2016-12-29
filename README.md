@@ -1,2 +1,3 @@
 # carpe_weekem
-A weekly task organizer
+
+A weekly task organizer project
