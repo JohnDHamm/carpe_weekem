@@ -11,3 +11,7 @@ mongoose.Promise = Promise
 
 module.exports.connect = () => mongoose.connect(MONGODB_URL)
 module.exports.disconnect = () => mongoose.disconnect()
+
+module.exports.tasks = () => mongoose.model('task', {
+	task: String
+})

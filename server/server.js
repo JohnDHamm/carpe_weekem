@@ -1,10 +1,11 @@
 'use strict';
 
 const express = require('express');
+const { json } = require('body-parser');
 
 const app = express();
 
-const { connect } = require('../db/database');
+const { connect, tasks } = require('../db/database');
 
 const PORT = process.env.PORT || 3000;
 app.set('port', PORT);
@@ -14,14 +15,20 @@ app.set('port', PORT);
 
 //middlewares
 app.use(express.static('client'));
-// app.use(json())
+app.use(json());
 
 
+// API
+
+const Tasks = tasks();
+app.get('/api/tasks', (req, res, err) => {
+	// console.log("api get tasks");
+	Tasks.find()
+		.then(tasks => res.json( { tasks } ))
+		.catch(err)
+})
 
 
-// app.listen(PORT, () => {
-// 	console.log(`Express server listening on port ${PORT}`)
-// })
 
 connect()
 	.then(() => {

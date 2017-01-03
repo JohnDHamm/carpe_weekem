@@ -1,9 +1,10 @@
 'use strict';
 
-app.controller("MainCtrl", function($scope, $http){
+app.controller("MainCtrl", function($scope, DbFactory){
 
-	console.log("hello with mongoose");
-	$scope.message = "hello";
+	$scope.message = "existing tasks:";
 
+	DbFactory.getTasks()
+		.then((tasks) => $scope.tasks = tasks);
 
 })
