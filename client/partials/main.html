@@ -9,5 +9,6 @@
 <div ng-repeat="task in tasks">
 	<h3>task: {{task.task}}</h3>
 	<button ng-click="removeTask(task._id)">delete</button>
+	<button ng-click="editTask(task)">edit</button>
 
 </div>
