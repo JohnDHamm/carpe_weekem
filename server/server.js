@@ -34,6 +34,13 @@ app.post('/api/tasks', (req, res, err) => {
 		.catch(err)
 })
 
+app.delete('/api/tasks/:id', (req, res, err) => {
+	const id = req.params.id
+	Tasks.findOneAndRemove({ _id: id})
+		.then(data => res.json(data))
+		.catch(err)
+})
+
 
 
 connect()

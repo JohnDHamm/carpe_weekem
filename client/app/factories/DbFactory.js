@@ -16,6 +16,14 @@ app.factory("DbFactory", function($q, $http) {
 				.then(data => data ? resolve(data) : reject(null))
 		)
 
-	return { getTasks, addTask }
+	const deleteTask = id =>
+		$q((resolve, reject) =>
+			$http
+				.delete(`/api/tasks/${id}`)
+				.then(data => data ? resolve(data) : reject(null))
+		)
+
+
+	return { getTasks, addTask, deleteTask }
 
 })

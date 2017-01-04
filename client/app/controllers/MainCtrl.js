@@ -2,10 +2,15 @@
 
 app.controller("MainCtrl", function($scope, DbFactory){
 
-	$scope.message = "existing tasks:";
-
-	DbFactory.getTasks()
+	// DbFactory.getTasks()
+	// 	.then((tasks) => $scope.tasks = tasks);
+	const loadTasks = () => {
+		DbFactory.getTasks()
 		.then((tasks) => $scope.tasks = tasks);
+	}
+
+	loadTasks();
+
 
 	$scope.addNewTask = () => {
 		const newTask = {
@@ -15,9 +20,17 @@ app.controller("MainCtrl", function($scope, DbFactory){
 		DbFactory.addTask(newTask)
 			.then(data => {
 				$scope.tasks.push(data.data);
+				$scope.newTaskEntry = "";
 				$scope.apply;
 			});
 
-
 	}
+
+	$scope.removeTask = id => {
+		DbFactory.deleteTask(id)
+			.then(data => loadTasks())
+	}
+
+
+
 })
