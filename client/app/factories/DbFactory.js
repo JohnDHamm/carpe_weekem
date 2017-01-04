@@ -9,6 +9,13 @@ app.factory("DbFactory", function($q, $http) {
 				.then(({data: {tasks}}) => tasks ? resolve(tasks) : reject(null))
 		)
 
-	return { getTasks }
+	const addTask = newTask =>
+		$q((resolve, reject) =>
+			$http
+				.post('/api/tasks', newTask)
+				.then(data => data ? resolve(data) : reject(null))
+		)
+
+	return { getTasks, addTask }
 
 })

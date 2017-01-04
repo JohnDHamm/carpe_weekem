@@ -1,6 +1,11 @@
 <div>
 	<p>message: {{message}}</p>
 </div>
+<div id="addTask">
+	<input type="text" ng-model="newTaskEntry">
+	<button ng-click="addNewTask()"></button>
+
+</div>
 <div>
 	<h3 ng-repeat="task in tasks">task: {{task.task}} {{task._id}}</h3>
 </div>

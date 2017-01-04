@@ -12,7 +12,6 @@ app.set('port', PORT);
 
 
 
-
 //middlewares
 app.use(express.static('client'));
 app.use(json());
@@ -21,10 +20,17 @@ app.use(json());
 // API
 
 const Tasks = tasks();
+
 app.get('/api/tasks', (req, res, err) => {
-	// console.log("api get tasks");
 	Tasks.find()
 		.then(tasks => res.json( { tasks } ))
+		.catch(err)
+})
+
+app.post('/api/tasks', (req, res, err) => {
+	const newTask = req.body;
+	Tasks.create(newTask)
+		.then(data => res.json(data))
 		.catch(err)
 })
 
