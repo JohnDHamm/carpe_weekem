@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> CARPE WEEKEM</title>
+		<!-- <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" type="text/css" href="/styles/main.css">
+	</head>
+	<body>
+		<div ng-app="carpe-weekem">
+			<div class="container">
+				<div ng-view>
+				</div>
+			</div>
+		</div>
+
+		<script src="lib/node_modules/angular/angular.min.js"></script>
+		<script src="lib/node_modules/angular-route/angular-route.min.js"></script>
+
+		<script src="/app/app.js"></script>
+
+		<script type="text/javascript" src="/app/factories/DbFactory.js"></script>
+
+		<script type="text/javascript" src="/app/controllers/MainCtrl.js"></script>
+	</body>
+</html>
