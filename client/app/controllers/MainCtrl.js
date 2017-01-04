@@ -2,8 +2,6 @@
 
 app.controller("MainCtrl", function($scope, DbFactory){
 
-	// DbFactory.getTasks()
-	// 	.then((tasks) => $scope.tasks = tasks);
 	const loadTasks = () => {
 		DbFactory.getTasks()
 		.then((tasks) => $scope.tasks = tasks);
@@ -28,6 +26,16 @@ app.controller("MainCtrl", function($scope, DbFactory){
 
 	$scope.removeTask = id => {
 		DbFactory.deleteTask(id)
+			.then(data => loadTasks())
+	}
+
+	$scope.editTask = task => {
+		const updatedTaskTest = {
+			_id: task._id,
+			task: task.task + ' - edited'
+		};
+
+		DbFactory.updateTask(updatedTaskTest)
 			.then(data => loadTasks())
 	}
 

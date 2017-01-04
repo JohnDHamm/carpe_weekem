@@ -41,6 +41,11 @@ app.delete('/api/tasks/:id', (req, res, err) => {
 		.catch(err)
 })
 
+app.put('/api/tasks', (req, res, err) => {
+	Tasks.findOneAndUpdate({_id: req.body._id}, req.body, { upsert: true, new: true})
+		.then(data => res.json(data))
+		.catch(err)
+})
 
 
 connect()
